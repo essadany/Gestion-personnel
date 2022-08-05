@@ -1,0 +1,18 @@
+
+.profile{
+    width: auto;
+    height: auto;
+}
+legend{
+    font-size: large;
+    padding-top: 20px;
+    border-bottom: 1px solid black;
+    color: #fb8500;
+}
+form{
+    margin: auto;
+}
+form div{
+    margin-left: 50px;
+    padding-top: 20px;
+}

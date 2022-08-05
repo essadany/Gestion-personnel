@@ -1,9 +1,11 @@
+import React from 'react';
 import './App.css';
 import Authentificate from './pages/Authentificate';
-import React from 'react';
+import Profile from './pages/Profile';
+
 function App() {
   return (
-    <Authentificate />
+    <Profile />
   );
 }
 
