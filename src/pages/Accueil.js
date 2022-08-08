@@ -5,44 +5,40 @@ import { Link } from "react-router-dom";
  
  export default function Accueil() {
    return (
-     <div classNameName="row accueil">
-        <div className="card text-center col-md-6 col-lg-3" >
-            <div className="card-header">
-                Featured
-            </div>
+     <div className="row accueil">
+        <div className="card col-lg-3 col-sm-10">
+            <div className="card-header">PROCHAINES ABSENCES</div>
             <div className="card-body">
-                <h5 className="card-title">Special title treatment</h5>
-                <p className="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                {/* <Link to="" className="btn btn-primary">Go somewhere</Link> */}
+                <h6>Aucune absence à venir.</h6>
             </div>
-            <div className="card-footer text-muted">
-                2 days ago
+            <div className="card-footer">
+                <button className="btn btn-success"><i className="fa-solid fa-circle-plus"></i> Ajouter une absence</button>
             </div>
         </div>
-        <div className="card text-center col-md-6 col-lg-3" >
-            <div className="card-header">
-                Featured
-            </div>
+
+
+        <div className="card col-lg-3 col-sm-10">
+            <div className="card-header">TACHES EN ATTENTE</div>
             <div className="card-body">
-                <h5 className="card-title">Special title treatment</h5>
-                <p className="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                {/* <Link to="" className="btn btn-primary">Go somewhere</Link> */}
+                <h6>Vous n'avez aucune tâche à effectuer pour le moment.</h6>
             </div>
-            <div className="card-footer text-muted">
-                2 days ago
+            <div className="card-footer">
+                <button className="btn btn-success"><i className="fa-solid fa-circle-plus"></i>    Ajouter une tâche</button>
             </div>
         </div>
-        <div className="card text-center col-md-6 col-lg-3" >
-            <div className="card-header">
-                Featured
-            </div>
+
+
+        <div className="card col-lg-3 col-sm-10">
+            <div className="card-header">PROCHAINS EVENEMENTS</div>
             <div className="card-body">
-                <h5 className="card-title">Special title treatment</h5>
-                <p className="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                {/* <Link to="" className="btn btn-primary">Go somewhere</Link> */}
+                <h6>Il n'y a pour le moment aucun évenement à venir.</h6>
             </div>
-            <div className="card-footer text-muted">
-                2 days ago
+        </div>
+
+        <div className="card col-lg-3 col-sm-10">
+            <div className="card-header">PROCHAINES ENTRETIENS</div>
+            <div className="card-body">
+                <h6>Il n'y a pour le moment aucune entretien à venir.</h6>
             </div>
         </div>
 

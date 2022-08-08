@@ -1,7 +1,24 @@
-.accueil{
-    width: auto;
-    height: auto;
+@media(max-width:992px){
+    .accueil{
+        margin: auto;
+        text-align: center;
+    }
+  }
+@media(min-width:992px){
+    .accueil{
+        margin-left: 200px;
+        height: auto;
+        margin:20px auto;
+        width: 1000px;
+        display: flex;
+        justify-content: center;
+    }
 }
+
+
 .card{
-    margin-right: 50px;
+    margin : 40px;
+    width: 400px;
+    height: 400px;
+    text-align: center;
 }
