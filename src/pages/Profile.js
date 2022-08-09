@@ -7,7 +7,7 @@ export default function () {
   return (
     <div className="profile ">
         <form className='row'>
-                    <legend>Mes informations personnels</legend>
+                    <legend className="titres">Mes informations personnels</legend>
                         <div className=" form-group col-lg-3 col-md-5 col-sm-10">
                             <label for="nom" className="form-label form-label-sm">Nom</label>
                             <input type="text" className="form-control form-control-sm" name="nom" id="nom" disabled />
@@ -72,7 +72,7 @@ export default function () {
                             <label for="tel1" className="form-label form-label-sm">Contact d'urgence</label>
                             <input type="tel" className="form-control form-control-sm" name="tel1" id="tel1" disabled />
                         </div>
-                    <legend>Poste</legend>
+                    <legend className="titres">Poste</legend>
                         <div className="form-group col-lg-3 col-md-5 col-sm-10">
                             <label for="fonction" className="form-label form-label-sm">Fonction</label>
                             <input type="text" min="13" className="form-control form-control-sm" id="fonction" disabled />
@@ -89,7 +89,7 @@ export default function () {
                             <label for="entree" className="form-label form-label-sm">Date d'entrée</label>
                             <input type="date" className="form-control form-control-sm" id="entree" disabled value="" />
                         </div>
-                    <legend>Banque</legend>
+                    <legend className="titres">Banque</legend>
                         <div className="form-group col-lg-3 col-md-5 col-sm-10">
                             <label for="Intitule" className="form-label form-label-sm">Intitulé</label>
                             <input type="text" min="13" className="form-control form-control-sm" id="Intitule" disabled />

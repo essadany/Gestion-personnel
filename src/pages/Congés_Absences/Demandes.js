@@ -5,6 +5,7 @@ export default function Demandes() {
   return (
     <div className='demandes'>
         <h4>Mes demandes</h4>
+        <button type="button" class="btn btn-warning CreationP"><i class="fa-solid fa-plus"></i>Ajouter une absence</button>
         <form className='row'>
             <legend>Filtres</legend>
             <div className="form-group col-md-5 col-sm-8">
@@ -40,6 +41,9 @@ export default function Demandes() {
                     <option value="Refusée">Refusée</option>
                 </select>
             </div>
+            <div>
+                <button type="button" class="btn filter"><i class="fa-solid fa-filter"></i>Afficher</button>
+            </div>
         </form>
         
         <table className="table">
@@ -51,6 +55,7 @@ export default function Demandes() {
                     <th scope="col">Type d'absence</th>
                     <th scope="col">Traité par</th>
                     <th scope="col">Statut</th>
+                    <th scope="col">Modifier</th>
                 </tr>
             </thead>
             <tbody>
@@ -61,6 +66,7 @@ export default function Demandes() {
                     <td>Mark</td>
                     <td>Otto</td>
                     <td>@mdo</td>
+                    <td>@mdo</td>
                 </tr>
                 <tr className='table-warning'>
                     <td>Mark</td>
@@ -68,6 +74,7 @@ export default function Demandes() {
                     <td>@mdo</td>
                     <td>Mark</td>
                     <td>Otto</td>
+                    <td>@mdo</td>
                     <td>@mdo</td>
                 </tr>
                 <tr className='table-info'>
@@ -77,6 +84,7 @@ export default function Demandes() {
                     <td>Mark</td>
                     <td>Otto</td>
                     <td>@mdo</td>
+                    <td>@mdo</td>
                 </tr>
                 <tr className='table-danger'>
                     <td>Mark</td>
@@ -84,6 +92,7 @@ export default function Demandes() {
                     <td>@mdo</td>
                     <td>Mark</td>
                     <td>Otto</td>
+                    <td>@mdo</td>
                     <td>@mdo</td>
                 </tr>
             </tbody>

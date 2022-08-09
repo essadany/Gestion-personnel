@@ -14,8 +14,14 @@ export const Navs = () => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="²">
             <Nav.Link href='/Accueil'>Acceuil</Nav.Link>
-            <Nav.Link href='/Profile'>Mon Profil</Nav.Link>
-            <Nav.Link href='/Gestion_production'>Gestion du production</Nav.Link>
+            <Nav.Link href='/Profile'>Mon Profile</Nav.Link>
+            <Nav.Link href='/Gestion_production'></Nav.Link>
+            <NavDropdown title="Gestion du production" id="basic-nav-dropdown">
+              <NavDropdown.Item href='/Gestion_production'>Gestion des projets</NavDropdown.Item>
+              <NavDropdown.Item href='/Gestion_taches'>
+                Gestion des tâches
+              </NavDropdown.Item>
+            </NavDropdown>
             <NavDropdown title="Congés et Absences" id="basic-nav-dropdown">
               <NavDropdown.Item href='/Planing_Absences'>Planning absences</NavDropdown.Item>
               <NavDropdown.Item href='/Demandes'>
