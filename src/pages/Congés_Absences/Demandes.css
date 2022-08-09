@@ -1,0 +1,23 @@
+@media(max-width:992px){
+    .demandes{
+        margin: auto;
+        text-align: center;
+        width: 600px;
+        height: auto;
+    }
+    .form{
+        width: 400px;
+      }
+  }
+@media(min-width:992px){
+    .demandes{
+        margin-left: 200px;
+        height: auto;
+        margin:20px auto;
+        width: 1200px;
+    }
+}
+.form{
+    display: flex;
+        justify-content: center;
+}

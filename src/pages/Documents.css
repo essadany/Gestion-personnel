@@ -1,0 +1,11 @@
+.categories{
+    width: 800px;
+    margin: 50px auto;
+    display: block;
+}
+.accordion button{
+    background-color: #f9844a;
+}
+.accordion-item{
+    background-color: #c0c0c0;
+}

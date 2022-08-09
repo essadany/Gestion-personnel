@@ -13,12 +13,12 @@ export const Navs = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="²">
-            <Nav.Link href='/'>Acceuil</Nav.Link>
+            <Nav.Link href='/Accueil'>Acceuil</Nav.Link>
             <Nav.Link href='/Profile'>Mon Profil</Nav.Link>
             <Nav.Link href='/Gestion_production'>Gestion du production</Nav.Link>
             <NavDropdown title="Congés et Absences" id="basic-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Planning absences</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
+              <NavDropdown.Item href='/Planing_Absences'>Planning absences</NavDropdown.Item>
+              <NavDropdown.Item href='/Demandes'>
                 Mes demandes
               </NavDropdown.Item>
               <NavDropdown.Item href="#action/3.3">Mes compteurs</NavDropdown.Item>
@@ -28,7 +28,7 @@ export const Navs = () => {
               </NavDropdown.Item>
             </NavDropdown>
             <Nav.Link href="/notes_frais">Notes de frais</Nav.Link>
-            <Nav.Link href="/documents">Mes documents</Nav.Link>
+            <Nav.Link href='/documents'>Mes documents</Nav.Link>
             <Nav.Link href='/message'>Messages</Nav.Link>
             <Nav.Link href="/deconnexion">Deconnexion</Nav.Link>
           </Nav>

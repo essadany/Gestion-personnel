@@ -15,6 +15,12 @@ import { Link } from "react-router-dom";
                 <button className="btn btn-success"><i className="fa-solid fa-circle-plus"></i> Ajouter une absence</button>
             </div>
         </div>
+        <div className="card col-lg-3 col-sm-10">
+            <div className="card-header"><i className="fa-solid fa-bell"> </i> Mes notifications</div>
+            <div className="card-body">
+                <h6>Il n'y a pas de notifications</h6>
+            </div>
+        </div>
 
 
         <div className="card col-lg-3 col-sm-10">
@@ -24,14 +30,6 @@ import { Link } from "react-router-dom";
             </div>
             <div className="card-footer">
                 <button className="btn btn-success"><i className="fa-solid fa-circle-plus"></i>    Ajouter une tâche</button>
-            </div>
-        </div>
-
-
-        <div className="card col-lg-3 col-sm-10">
-            <div className="card-header">PROCHAINS EVENEMENTS</div>
-            <div className="card-body">
-                <h6>Il n'y a pour le moment aucun évenement à venir.</h6>
             </div>
         </div>
 
