@@ -1,11 +1,42 @@
 import React from 'react'
+import Creer_absences from './Creer_absences'
 import './Demandes.css'
+import { Modal,Button } from 'react-bootstrap'
+import { useState } from 'react'
 
 export default function Demandes() {
+    const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   return (
     <div className='demandes'>
         <h4>Mes demandes</h4>
-        <button type="button" class="btn btn-warning CreationP"><i class="fa-solid fa-plus"></i>Ajouter une absence</button>
+        <button type="button" class="btn btn-warning CreationP" onClick={handleShow}><i class="fa-solid fa-plus"></i>Ajouter une absence</button>
+        <Modal
+            size='lg'
+            show={show}
+            onHide={handleClose}
+            backdrop="static"
+            keyboard={false}
+        >
+            <Modal.Header closeButton>
+            <Modal.Title>Creation d'une demande d'absence</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                <Creer_absences />
+            </Modal.Body>
+            <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose}>
+                Annuler
+            </Button>
+            <Button variant="primary">Enregistrer</Button>
+            <Button variant="success">Valider</Button>
+            </Modal.Footer>
+        </Modal>
+
+
+
         <form className='row'>
             <legend>Filtres</legend>
             <div className="form-group col-md-5 col-sm-8">

@@ -32,6 +32,7 @@ function App() {
           <Route exact path='/documents' element={<Documents />}>  </Route>
           <Route exact path='/Messages' element={<Messages />}>  </Route>
           <Route exact path='/Authentificate' element={<Authentificate />}>  </Route>
+          <Route exact path='/production' element={<production />}>  </Route>
           <Route exact path='*' element="error 404">  </Route>
       </Routes>
     </Router>

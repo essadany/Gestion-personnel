@@ -19,7 +19,7 @@ export const Navs = () => {
             <NavDropdown title="Gestion du production" id="basic-nav-dropdown">
               <NavDropdown.Item href='/Gestion_production'>Gestion des projets</NavDropdown.Item>
               <NavDropdown.Item href='/Gestion_taches'>
-                Gestion des tâches
+                Gestion d'Activités
               </NavDropdown.Item>
             </NavDropdown>
             <NavDropdown title="Congés et Absences" id="basic-nav-dropdown">

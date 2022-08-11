@@ -1,6 +1,4 @@
-.categories{
-    width: 800px;
-    margin: 50px auto;
+.documetns{
     display: block;
 }
 .accordion button{
@@ -9,3 +7,20 @@
 .accordion-item{
     background-color: #c0c0c0;
 }
+@media(max-width:992px){
+    .documents{
+        margin: auto;
+        text-align: center;
+        width: 600px;
+        height: auto;
+    }
+  }
+@media(min-width:992px){
+    .documents{
+        height: auto;
+
+        margin-left: 200px;
+       width: 1000px;
+    }
+}
+ 

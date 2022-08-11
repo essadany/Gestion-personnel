@@ -1,24 +1,22 @@
-
 @media(max-width:992px){
     .production{
-        margin: 50px auto;
+        margin: auto;
         text-align: center;
-        width: 600px;
+        width: 400px;
         height: auto;
     }
     .form{
-        width: 350px;
+        width: 400px;
       }
   }
 @media(min-width:992px){
     .production{
-        margin-left: 200px;
         height: auto;
-        margin:20px auto;
-        width: 1200px;
+        margin: auto;
+        width: 800px;
     }
 }
 .form{
-        display: flex;
+    display: flex;
         justify-content: center;
 }

@@ -11,10 +11,9 @@
   }
 @media(min-width:992px){
     .demandes{
-        margin-left: 200px;
         height: auto;
-        margin:20px auto;
-        width: 1200px;
+        margin: auto;
+        width: 1000px;
     }
 }
 .form{
