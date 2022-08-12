@@ -13,6 +13,7 @@ import Gestion_Production from './pages/Gestion_Production/Gestion_Production';
 import Gestion_taches from './pages/Gestion_Production/Gestion_taches';
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import {Navs} from "./components/Navs";
+import Personnel from './pages/Personnel';
 
 
 
@@ -24,6 +25,7 @@ function App() {
       <Routes>
           <Route exact path='/Accueil' element={< Accueil />}>  </Route>
           <Route exact path='/Profile' element={<Profile />}>  </Route>
+          <Route exact path='/Personnel' element={<Personnel />}></Route>
           <Route exact path='/Planing_Absences' element={<Planing_Absences />}>  </Route>
           <Route exact path='/Demandes' element={<Demandes />}>  </Route>
           <Route exact path='/Gestion_Production' element={< Gestion_Production />}>  </Route>

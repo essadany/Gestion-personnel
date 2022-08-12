@@ -7,7 +7,7 @@ export default function () {
   return (
     <div className="profile ">
         <form className='row'>
-                    <legend className="titres">Mes informations personnels</legend>
+                    <legend className="titres">Mes informations personnelles</legend>
                         <div className=" form-group col-lg-3 col-md-5 col-sm-10">
                             <label for="nom" className="form-label form-label-sm">Nom</label>
                             <input type="text" className="form-control form-control-sm" name="nom" id="nom" disabled />

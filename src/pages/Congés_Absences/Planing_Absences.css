@@ -1,7 +1,4 @@
 @media(max-width:992px){
-    #ab{
-        float:initial;
-    }
     #ab button{
         font-size: smaller;
         display: inline;

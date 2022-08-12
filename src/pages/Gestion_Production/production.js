@@ -11,9 +11,22 @@ export default function Production() {
             <div className="mb-3 col-md-5 col-sm-8">
             <label for='client'>Client</label>
             <select className="form-select client " aria-label="Default select example" required>
-                <option selected>ICART</option>
-                <option value="EOS">EOS</option>
-                <option value="AXION">AXION</option>
+            <option selected value="KYNTUS">KYNTUS</option>
+                    <option value="CIRCET">CIRCET</option>
+                    <option value="AXIONE">AXIONE</option>
+                    <option value="JSC">JSC</option>
+                    <option value="SOGEA">SOGEA</option>
+                    <option value="ETM">ETM</option>
+                    <option value="IDOM">IDOM</option>
+                    <option value="SCOPELEC_DR_SUD">SCOPELEC_DR_SUD</option>
+                    <option value="SCOPELEC_DR_SUD_OUEST">SCOPELEC_DR_SUD_OUEST</option>
+                    <option value="SCOPELEC_DR_SUD_EST">SCOPELEC_DR_SUD_EST</option>
+                    <option value="BFC_Fibre">BFC Fibre</option>
+                    <option value="ORANGE">ORANGE</option>
+                    <option value="ETPR">ETPR</option>
+                    <option value="ICART_TELECOM">ICART TELECOM</option>
+                    <option value="EOS_TELECOM">EOS TELECOM</option>
+                    <option value="CTBE">CTBE</option>
             </select>
         </div>
         <div className='col-md-5 col-sm-8'>
