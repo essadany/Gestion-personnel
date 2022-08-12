@@ -126,56 +126,108 @@ export default function Personnel() {
                         </div>
                       
                     </form>
-            </Modal.Body>
-            <Modal.Footer>
-            <Button variant="secondary" onClick={handleClose}>
-                Annuler
-            </Button>
-            <Button variant="success">Valider</Button>
-            </Modal.Footer>
-        </Modal>
+                </Modal.Body>
+                <Modal.Footer>
+                <Button variant="secondary" onClick={handleClose}>
+                    Annuler
+                </Button>
+                <Button variant="success">Valider</Button>
+                </Modal.Footer>
+            </Modal>
             <button type='button' className='btn btn-success'><i className='fa-solid fa-file-excel'></i>EXPORT EXCEL</button>
             <button type='button' className='btn btn-primary'><i className='fa-solid fa-print'></i>IMPRIMER</button>
         </div>
         <h5>Filtres</h5>
         <form className='row'>
-        <div className="mb-3 col-md-5 col-sm-8">
-            <label for="exampleFormControlInput1" className="form-label">Date  du debut</label>
+            <div className="mb-3 col-md-5 col-sm-8">
+            <label for="exampleFormControlInput1" className="form-label">Date  d'entrée</label>
             <input type="date" className="form-control" id="exampleFormControlInput1"  required/>
-        </div>
-            <div className='col-md-5 col-sm-8'>
-                <label for='client'>Client</label>
-                <select className="form-select client " aria-label="Default select example" required>
-                    <option selected value="KYNTUS">KYNTUS</option>
-                    <option value="CIRCET">CIRCET</option>
-                    <option value="AXIONE">AXIONE</option>
-                    <option value="JSC">JSC</option>
-                    <option value="SOGEA">SOGEA</option>
-                    <option value="ETM">ETM</option>
-                    <option value="IDOM">IDOM</option>
-                    <option value="SCOPELEC_DR_SUD">SCOPELEC_DR_SUD</option>
-                    <option value="SCOPELEC_DR_SUD_OUEST">SCOPELEC_DR_SUD_OUEST</option>
-                    <option value="SCOPELEC_DR_SUD_EST">SCOPELEC_DR_SUD_EST</option>
-                    <option value="BFC_Fibre">BFC Fibre</option>
-                    <option value="ORANGE">ORANGE</option>
-                    <option value="ETPR">ETPR</option>
-                    <option value="ICART_TELECOM">ICART TELECOM</option>
-                    <option value="EOS_TELECOM">EOS TELECOM</option>
-                    <option value="CTBE">CTBE</option>
-                </select>
             </div>
-            <div className='col-md-5 col-sm-8'>
-                <label for="equipe">Projet</label>
-                <select className="form-select projet" aria-label="Default select example" required>
-                    <option valure="1">projet1</option>
-                    <option value="2">projet2</option>
-                    <option value="3">projet3</option>
-                </select>
+            <div className=" form-group col-lg-3 col-md-5 col-sm-10">
+                <label for="nom" className="form-label form-label-sm">Nom</label>
+                <input type="text" className="form-control form-control-sm" name="nom" id="nom"  />
+            </div>
+            <div className="form-group col-lg-3 col-md-5 col-sm-10">
+                <label for="prenom" className="form-label form-label-sm">Prénom</label>
+                <input type="text" className="form-control form-control-sm" name="prenom" id="prenom"  />
+            </div>
+            <div className="form-group col-lg-3 col-md-5 col-sm-10">
+                <label for="fonction" className="form-label form-label-sm">Fonction</label>
+                <input type="text" min="13" className="form-control form-control-sm" id="fonction"  />
             </div>
             <div>
                 <button type="button" className="btn filter"><i className="fa-solid fa-filter"></i>Afficher</button>
             </div>
-      </form>
+        </form>
+
+        <table className="p">
+            <thead>
+                <tr>
+                    <th >Nom</th>
+                    <th >Prénom</th>
+                    <th >Date de naissance</th>
+                    <th >Poste</th>
+                    <th >Date d'entrée</th>
+                    <th >Date de sortie</th>
+                    <th >Dernière fiche du paie</th>
+                    <th >Congés restants</th>
+                    <th >Modifier</th>
+                    <th >Licencier</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                    <td>@mdo</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                    <td><button><i class="fa-solid fa-user-xmark"></i></button></td>
+                </tr>
+                <tr>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                    <td>@mdo</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                    <td><button><i class="fa-solid fa-user-xmark"></i></button></td>
+                </tr>
+                <tr>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                    <td>@mdo</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                    <td><button><i class="fa-solid fa-user-xmark"></i></button></td>
+                </tr>
+                <tr>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                    <td>@mdo</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                    <td><button><i class="fa-solid fa-user-xmark"></i></button></td>
+                </tr>
+            </tbody>
+        </table>
+
+      
     </div>
   )
 }
