@@ -7,8 +7,10 @@ import { useState } from 'react'
 import { Button } from 'react-bootstrap'
 import Production from './production'
 
+
 export default function Gestion_Production() {
     const [show, setShow] = useState(false);
+    const [projet, setProjet]= useState("")
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -38,7 +40,7 @@ export default function Gestion_Production() {
           <Button variant="primary">Enregistrer</Button>
         </Modal.Footer>
       </Modal>
-      <form className='row'>
+      <form className='row' name='formulaire'>
         <legend>Filtres</legend>
         <div className="mb-3 col-md-5 col-sm-8">
             <label for="exampleFormControlInput1" className="form-label">Date  du debut</label>
@@ -46,7 +48,7 @@ export default function Gestion_Production() {
         </div>
             <div className='col-md-5 col-sm-8'>
                 <label for='client'>Client</label>
-                <select className="form-select client " aria-label="Default select example" required>
+                <select className="form-select client " name='client' aria-label="Default select example" required >
                     <option selected value="KYNTUS">KYNTUS</option>
                     <option value="CIRCET">CIRCET</option>
                     <option value="AXIONE">AXIONE</option>
@@ -67,7 +69,7 @@ export default function Gestion_Production() {
             </div>
             <div className='col-md-5 col-sm-8'>
                 <label for="equipe">Projet</label>
-                <select className="form-select projet" aria-label="Default select example" required>
+                <select className="form-select projet" name='projet' aria-label="Default select example" required>
                     <option valure="1">projet1</option>
                     <option value="2">projet2</option>
                     <option value="3">projet3</option>

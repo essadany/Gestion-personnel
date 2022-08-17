@@ -20,8 +20,8 @@ import Personnel from './pages/Personnel';
 function App() {
   return (
     <div className='App'>
-      <Authentificate />
-    {/* <Navs/>
+      
+     <Navs/>
     <Router>
       <Routes>
           <Route exact path='/Accueil' element={< Accueil />}>  </Route>
@@ -38,7 +38,7 @@ function App() {
           <Route exact path='/production' element={<production />}>  </Route>
           <Route exact path='*' element="error 404">  </Route>
       </Routes>
-    </Router> */}
+    </Router> 
     </div>
   );
 }
