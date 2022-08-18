@@ -1,6 +1,4 @@
-.documetns{
-    display: block;
-}
+
 .accordion button{
     background-color: #f9844a;
 }
@@ -19,8 +17,8 @@
     .documents{
         height: auto;
 
-        margin-left: 200px;
-       width: 1200px;
+        margin-left: 90px;
+       width: 1000px;
     }
 }
  
