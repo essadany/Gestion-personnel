@@ -11,6 +11,33 @@ export default function Planing_Absences() {
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+
+    /* const [prenom,setPrenom]=useState("")
+    const [nom,setNom]=useState("")
+    const [email,setEmail]=useState("")
+    const [pass,setPass]=useState("")
+    const [sexe,setSexe]=useState("")
+    const [date_debut,setDate_debut]=useState("")
+    const [date_fin,setDate_fin]=useState("")
+    const [journee1,setJournee1]=useState("")
+    const [journee2,setJournee2]=useState("")
+    const [typeAbs,setTypeAbs]=useState("")
+    const [justificatif,setJustificatif]=useState("")
+    const [comment,setComment]=useState("")
+    
+    async function ajouterAbs()
+    {
+        let item={email,date_debut,date_fin,journee1,journee2,journee2,typeAbs,justificatif,comment}
+        let res=await fetch("http://localhost:8000/api/register",{
+            method:'POST',
+            body:JSON.stringify(item),
+            headers:{
+                "Content-Type":'application/json',
+                "Accept":'application/json'
+            }
+        })
+        res=await res.json()
+    }  */
   return (
     <div className='planning_Absences'>
         <h4>Planing absences</h4>
@@ -36,8 +63,7 @@ export default function Planing_Absences() {
             <Button variant="secondary" onClick={handleClose}>
                 Annuler
             </Button>
-            <Button variant="primary">Enregistrer</Button>
-            <Button variant="success">Valider</Button>
+            {/* onClick={ajouterAbs} */}<Button variant="success" >Valider</Button>
             </Modal.Footer>
         </Modal>
         <h5>Filtres</h5>

@@ -9,7 +9,30 @@ import React, { useState, useEffect, useRef } from 'react'
 import { useDownloadExcel } from 'react-export-table-to-excel'
 
 export default function Gestion_Production() {
-  //exporter la table des salariés........................................................
+  /* const [projet,setProjet]=useState("")
+    const [client,setClient]=useState("")
+    const [date,setDate]=useState("")
+    const [activites,setActivites]=useState("")
+    const [production,setProduction]=useState("")
+    const [categorie1,setCategorie1]=useState("")
+    const [categorie2,setCategorie]=useState("")
+    const [comment,setComment]=useState("")
+
+    async function CreerProjet()
+    {
+        let item={projet,client,date,activites,production,sexe,date_naissance,nombre_enfant,nationalite,identite,rue,codep,ville,pays,tel_p,tel_f,statu_matrimonial,email_perso,contact_urgence,fonction,type_contart,date_entree,date_sortie,banque,iban,rib,securite_social,matricule,role}
+        let res=await fetch("http://localhost:8000/api/register",{
+            method:'POST',
+            body:JSON.stringify(item),
+            headers:{
+                "Content-Type":'application/json',
+                "Accept":'application/json'
+            }
+        })
+        res=await res.json()
+    }  */
+
+  //exporter la table des projets........................................................
   const [data, getData] = useState([])
   const URL = 'https://jsonplaceholder.typicode.com/posts';
 
@@ -128,7 +151,7 @@ if (type) {
           <Button variant="secondary" onClick={handleClose}>
             Annuler
           </Button>
-          <Button variant="primary">Enregistrer</Button>
+          {/* onClick={CreerProjet} */}<Button variant="primary">Enregistrer</Button>
         </Modal.Footer>
       </Modal>
       <form className='row' name='formulaire'>
@@ -184,7 +207,7 @@ if (type) {
             </div>
       </form>
       
-      <table className="table">
+      <table className="table" ref={tableRef}>
           <thead>
               <tr>
                   <th scope="col">Date</th>
@@ -208,7 +231,6 @@ if (type) {
                           <td>{item.userId}</td>
                           <td>{item.id}</td>
                           <td>{item.title}</td>
-                          <td>{item.userId}</td>
                           <td>{item.userId}</td>
                           <td><button className='btn btn-outline-primary'><i class="fa-solid fa-pen-to-square"></i></button></td>
                 </tr>

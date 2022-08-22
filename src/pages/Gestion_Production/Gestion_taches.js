@@ -1,14 +1,65 @@
-import React from 'react'
+import React, { useState, useEffect, useRef } from 'react'
+import { useDownloadExcel } from 'react-export-table-to-excel'
 import { Link } from 'react-router-dom'
 import PopupCentrer from '../../fonctions/PopupCentrer'
 import "./Gestion_taches.css"
 import Modal from 'react-bootstrap/Modal'
-import { useState } from 'react'
 import { Button } from 'react-bootstrap'
 import Production from './production'
 import Select from 'react-select'
 
 export default function Gestion_taches() {
+    /* const [projet,setProjet]=useState("")
+    const [client,setClient]=useState("")
+    const [date,setDate]=useState("")
+    const [activites,setActivites]=useState("")
+    const [production,setProduction]=useState("")
+    const [categorie1,setCategorie1]=useState("")
+    const [categorie2,setCategorie]=useState("")
+    const [comment,setComment]=useState("")
+
+    async function CreerProjet()
+    {
+        let item={projet,client,date,activites,production,sexe,date_naissance,nombre_enfant,nationalite,identite,rue,codep,ville,pays,tel_p,tel_f,statu_matrimonial,email_perso,contact_urgence,fonction,type_contart,date_entree,date_sortie,banque,iban,rib,securite_social,matricule,role}
+        let res=await fetch("http://localhost:8000/api/register",{
+            method:'POST',
+            body:JSON.stringify(item),
+            headers:{
+                "Content-Type":'application/json',
+                "Accept":'application/json'
+            }
+        })
+        res=await res.json()
+    }  */
+
+  //exporter la table des projets........................................................
+  const [data, getData] = useState([])
+  const URL = 'https://jsonplaceholder.typicode.com/posts';
+
+    useEffect(() => {
+        fetchData()
+    }, [])
+
+
+    const fetchData = () => {
+        fetch(URL)
+            .then((res) =>
+                res.json())
+
+            .then((response) => {
+                console.log(response);
+                getData(response);
+            })
+
+    }
+    const tableRef = useRef(null);
+    const { onDownload } = useDownloadExcel({
+        currentTableRef: tableRef.current,
+        filename: 'Users table',
+        sheet: 'Users'
+    })
+  //........................................................................................................................
+    
     const [show, setShow] = useState(false);
     const [selected, setSelected] = React.useState("");
 
@@ -80,7 +131,11 @@ if (type) {
     
     <div className="GestionA">
       <h4>Gestion des projets</h4>
-     <button type="button" className="btn btn-success CreationP" onClick={handleShow}><i className="fa-solid fa-plus"></i>Avancement d'une activité</button>
+      <div className='ajout-export'>
+          <button type="button" className="btn btn-success CreationP" onClick={handleShow}><i className="fa-solid fa-plus"></i>Avancement d'une activité</button>
+          <button type='button' className='btn btn-success' onClick={onDownload}><i className='fa-solid fa-file-excel' ></i>EXPORT EXCEL</button>
+    </div>
+     
      <Modal
         size='lg'
         show={show}
@@ -124,9 +179,9 @@ if (type) {
                 {options}
                 </select>
             </div>
-            <div className='col-md-4 col-sm-8'>
+            <div className='col-md-5 col-sm-9'>
             <label>Activités</label>
-            <Select className="activites-select"  isMulti options={Activites} required />
+            <Select className="activites-select"   isMulti options={Activites} required />
             </div>
             <div className=" col-md-5 col-sm-8">
                 <label for="prod">Production</label>
@@ -185,7 +240,7 @@ if (type) {
       </form>
       
       
-      <table className="table">
+      <table className="table" ref={tableRef}>
           <thead>
               <tr>
                   <th scope="col">Date</th>
@@ -200,50 +255,19 @@ if (type) {
               </tr>
           </thead>
           <tbody>
-              <tr className='table-success'>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
-                  <td>@mdo</td>
-                  <td>@mdo</td>
-                  <td>@mdo</td>
-              </tr>
-              <tr className='table-warning'>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
-                  <td>@mdo</td>
-                  <td>@mdo</td>
-                  <td>@mdo</td>
-              </tr>
-              <tr className='table-info'>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
-                  <td>@mdo</td>
-                  <td>@mdo</td>
-                  <td>@mdo</td>
-              </tr>
-              <tr className='table-danger'>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
-                  <td>@mdo</td>
-                  <td>@mdo</td>
-                  <td>@mdo</td>
-              </tr>
+          {data.map((item, i) => (
+                      <tr key={i}>
+                          <td>{item.userId}</td>
+                          <td>{item.id}</td>
+                          <td>{item.title}</td>
+                          <td>{item.body}</td>
+                          <td>{item.userId}</td>
+                          <td>{item.id}</td>
+                          <td>{item.title}</td>
+                          <td>{item.userId}</td>
+                          <td><button className='btn btn-outline-primary'><i class="fa-solid fa-pen-to-square"></i></button></td>
+                </tr>
+                ))}
           </tbody>
       </table>
     </div>

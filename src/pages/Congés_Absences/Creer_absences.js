@@ -1,13 +1,14 @@
 import React from 'react'
 
 export default function Creer_absences() {
+  
   return (
     <div>
         <form className="d-flex justify-content-around " method="post" action="">
                         <div className="row">
                          <div className="form-group col-md-5 col-sm-6">
                             <label for="debut" className="form-label form-label-sm">Du</label>
-                            <input type="date" className="form-control form-control-sm" name="debut"id="debut" required />
+                            <input type="date" className="form-control form-control-sm" name="debut"id="debut"  value="" required />
                           </div>
                           <div className="form-group col-md-5 col-sm-6">
                             <select id="type" className="form-select" name="du">
@@ -17,9 +18,9 @@ export default function Creer_absences() {
                             </select>
                           </div>
                         
-                        <div className="form-group col-md-5 col-sm-6">
+                        <div className="form-group col-md-5 col-sm-6"> value=""
                             <label for="fin" className="form-label form-label-sm">Au</label>
-                            <input type="date" className="form-control form-control-sm" name="fin" id="fin" />
+                            <input type="date" className="form-control form-control-sm" value="" name="fin" id="fin" />
                         </div>
                         <div className="form-group col-md-5 col-sm-6">
                             <select id="type" className="form-select " name="au">
@@ -46,11 +47,11 @@ export default function Creer_absences() {
                         </div>
                         <div className="form-group col-md-5 col-sm-6">
                             <label for="justificatif" className="form-label form-label-sm">Pièces justificatifs</label>
-                            <input type="file" multiple className="form-control form-control-sm" name="justificatif" id="justificatif" />
+                            <input type="file" multiple className="form-control form-control-sm" value="" name="justificatif" id="justificatif" />
                         </div>
                         <div className="form-group col-md-5 col-sm-6">
                             <label for="comment" className="form-label form-label-sm">Commentaire</label>
-                            <textarea className="form-control form-control-sm" name="comment" id="comment" ></textarea>
+                            <textarea className="form-control form-control-sm" value="" name="comment" id="comment" ></textarea>
                         </div>
                         
                         </div>

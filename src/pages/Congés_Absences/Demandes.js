@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { useState, useEffect, useRef } from 'react'
+import { useDownloadExcel } from 'react-export-table-to-excel'
 import Creer_absences from './Creer_absences'
 import './Demandes.css'
 import { Modal,Button } from 'react-bootstrap'
-import { useState } from 'react'
 
 export default function Demandes() {
     const [show, setShow] = useState(false);
@@ -10,11 +10,68 @@ export default function Demandes() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  
+  /* const [prenom,setPrenom]=useState("")
+    const [nom,setNom]=useState("")
+    const [email,setEmail]=useState("")
+    const [pass,setPass]=useState("")
+    const [sexe,setSexe]=useState("")
+    const [date_debut,setDate_debut]=useState("")
+    const [date_fin,setDate_fin]=useState("")
+    const [journee1,setJournee1]=useState("")
+    const [journee2,setJournee2]=useState("")
+    const [typeAbs,setTypeAbs]=useState("")
+    const [justificatif,setJustificatif]=useState("")
+    const [comment,setComment]=useState("")
+    
+    async function ajouterAbs()
+    {
+        let item={prenom,nom,email,pass,sexe,date_naissance,nombre_enfant,nationalite,identite,rue,codep,ville,pays,tel_p,tel_f,statu_matrimonial,email_perso,contact_urgence,fonction,type_contart,date_entree,date_sortie,banque,iban,rib,securite_social,matricule,role}
+        let res=await fetch("http://localhost:8000/api/register",{
+            method:'POST',
+            body:JSON.stringify(item),
+            headers:{
+                "Content-Type":'application/json',
+                "Accept":'application/json'
+            }
+        })
+        res=await res.json()
+    }  */
+    //exporter la table d'historiques d'absences........................................................
+    const [data, getData] = useState([])
+    const URL = 'https://jsonplaceholder.typicode.com/posts';
+ 
+    useEffect(() => {
+        fetchData()
+    }, [])
+ 
+ 
+    const fetchData = () => {
+        fetch(URL)
+            .then((res) =>
+                res.json())
+ 
+            .then((response) => {
+                console.log(response);
+                getData(response);
+            })
+ 
+    }
+    const tableRef = useRef(null);
+    const { onDownload } = useDownloadExcel({
+        currentTableRef: tableRef.current,
+        filename: 'Users table',
+        sheet: 'Users'
+    })
+    //.............................................................
+
   return (
     <div className='demandes'>
         <h4>Mes demandes</h4>
-        <button type="button" class="btn btn-warning CreationP" onClick={handleShow}><i class="fa-solid fa-plus"></i>Ajouter une absence</button>
+        <div className='ajout-export'>
+          <button type="button" class="btn btn-warning CreationP" onClick={handleShow}><i class="fa-solid fa-plus"></i>Ajouter une absence</button>
+          <button type='button' className='btn btn-success' onClick={onDownload}><i className='fa-solid fa-file-excel' ></i>EXPORT EXCEL</button>
+        </div>
+       
         <Modal
             size='lg'
             show={show}
@@ -32,8 +89,7 @@ export default function Demandes() {
             <Button variant="secondary" onClick={handleClose}>
                 Annuler
             </Button>
-            <Button variant="primary">Enregistrer</Button>
-            <Button variant="success">Valider</Button>
+            {/* onClick={ajouterAbs} */}<Button variant="success">Valider</Button>
             </Modal.Footer>
         </Modal>
 
@@ -79,7 +135,7 @@ export default function Demandes() {
             </div>
         </form>
         
-        <table className="table">
+        <table className="table" ref={tableRef}>
             <thead>
                 <tr>
                     <th scope="col">Debut</th>
@@ -92,42 +148,17 @@ export default function Demandes() {
                 </tr>
             </thead>
             <tbody>
-                <tr className='table-success'>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td>@mdo</td>
+                {data.map((item, i) => (
+                        <tr key={i}>
+                            <td>{item.userId}</td>
+                            <td>{item.id}</td>
+                            <td>{item.title}</td>
+                            <td>{item.body}</td>
+                            <td>{item.userId}</td>
+                            <td>{item.id}</td>
+                            <td><button className='btn btn-outline-primary'><i class="fa-solid fa-pen-to-square"></i></button></td>
                 </tr>
-                <tr className='table-warning'>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td>@mdo</td>
-                </tr>
-                <tr className='table-info'>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td>@mdo</td>
-                </tr>
-                <tr className='table-danger'>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td>@mdo</td>
-                </tr>
+                ))}
             </tbody>
         </table>
     </div>
