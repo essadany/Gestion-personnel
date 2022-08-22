@@ -21,11 +21,7 @@
     display: flex;
     justify-content: center;
 }
-.CreationP {
-    float: right;
-    margin-right: 50px;
-    
-}
+
 .fa-solid{
     margin-right: 10px;
 }
@@ -34,4 +30,9 @@
 }
 .filter{
     background-color:#ff006e;
+}
+.ajout-export button {
+    margin-right: 10px;
+    display: inline;
+    margin-bottom: 5px;
 }

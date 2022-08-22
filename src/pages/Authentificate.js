@@ -1,12 +1,14 @@
 import React from 'react'
 import logo from '../assets/img/logo.png'
 import './Auth.css'
+import Accueil from './Accueil'
+
 const Authentificate = () => {
   return (
     <div className='mr'>
         <img className="mb-4 img_logo image_fluid" src={logo} alt="" />
       <h1 className="h3 mb-3 fw-normal" >Gestion du Personnel</h1>
-      <form className="container col-lg-4 col-md-8 col-xs-10 " method="post" action="" >
+      <form className="container form-connect col-lg-4 col-md-8 col-xs-10 " method="post" >
           <div className="mb-3  ">
             <label for="exampleInput" className="form-label">Identifiant :</label>
             <input type="text" className="form-control" id="exampleInput" name="id" />
@@ -20,11 +22,12 @@ const Authentificate = () => {
             <label className="form-check-label" for="exampleCheck1">Resté connecté?</label>
           </div>
           <div>
-            <input type="submit" className="btn btn-primary col-3" name="valider" value="Connecter" />
+            <input type="submit" className="btn btn-primary connecter col-3" name="valider" value="Connecter" />
           </div>
           
       </form>
-    </div>
+      </div>
+    
   )
 }
 export default Authentificate;

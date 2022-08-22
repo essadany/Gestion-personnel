@@ -75,7 +75,7 @@ if (type) {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const Activites = [{label:"Ac1", value :"1"},{label:"Ac2", value : "2"},{label : "Ac3", value: "3"},{label : "Ac4", value : "4"}] 
-
+    
   return (
     
     <div className="GestionA">
@@ -183,6 +183,7 @@ if (type) {
                 <button type="button" className="btn filter"><i className="fa-solid fa-filter"></i>Afficher</button>
             </div>
       </form>
+      
       
       <table className="table">
           <thead>

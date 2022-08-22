@@ -1,14 +1,41 @@
-import React from 'react'
+
 import { Link } from 'react-router-dom'
 import PopupCentrer from '../../fonctions/PopupCentrer'
 import "./Gestion_Production.css"
 import Modal from 'react-bootstrap/Modal'
-import { useState } from 'react'
 import { Button } from 'react-bootstrap'
 import Production from './production'
-
+import React, { useState, useEffect, useRef } from 'react'
+import { useDownloadExcel } from 'react-export-table-to-excel'
 
 export default function Gestion_Production() {
+  //exporter la table des salariés........................................................
+  const [data, getData] = useState([])
+  const URL = 'https://jsonplaceholder.typicode.com/posts';
+
+    useEffect(() => {
+        fetchData()
+    }, [])
+
+
+    const fetchData = () => {
+        fetch(URL)
+            .then((res) =>
+                res.json())
+
+            .then((response) => {
+                console.log(response);
+                getData(response);
+            })
+
+    }
+    const tableRef = useRef(null);
+    const { onDownload } = useDownloadExcel({
+        currentTableRef: tableRef.current,
+        filename: 'Users table',
+        sheet: 'Users'
+    })
+  //........................................................................................................................
     const [show, setShow] = useState(false);
     const [selected, setSelected] = React.useState("");
 
@@ -79,7 +106,11 @@ if (type) {
     
     <div className="gestionP">
       <h4>Gestion des projets</h4>
-     <button type="button" className="btn btn-success CreationP" onClick={handleShow}><i className="fa-solid fa-plus"></i>Créer un nouveau projet</button>
+      <div className='ajout-export'>
+          <button type="button" className="btn btn-success CreationP" onClick={handleShow}><i className="fa-solid fa-plus"></i>Créer un nouveau projet</button>
+          <button type='button' className='btn btn-success'><i className='fa-solid fa-file-excel'></i>EXPORT EXCEL</button>
+            <button type='button' className='btn btn-primary'><i className='fa-solid fa-print'></i>IMPRIMER</button>
+        </div>
      <Modal
         size='lg'
         show={show}
@@ -168,50 +199,20 @@ if (type) {
               </tr>
           </thead>
           <tbody>
-              <tr className='table-success'>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
-                  <td>@mdo</td>
-                  <td>@mdo</td>
-                  <td>@mdo</td>
-              </tr>
-              <tr className='table-warning'>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
-                  <td>@mdo</td>
-                  <td>@mdo</td>
-                  <td>@mdo</td>
-              </tr>
-              <tr className='table-info'>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
-                  <td>@mdo</td>
-                  <td>@mdo</td>
-                  <td>@mdo</td>
-              </tr>
-              <tr className='table-danger'>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
-                  <td>@mdo</td>
-                  <td>@mdo</td>
-                  <td>@mdo</td>
-              </tr>
+            {data.map((item, i) => (
+                      <tr key={i}>
+                          <td>{item.userId}</td>
+                          <td>{item.id}</td>
+                          <td>{item.title}</td>
+                          <td>{item.body}</td>
+                          <td>{item.userId}</td>
+                          <td>{item.id}</td>
+                          <td>{item.title}</td>
+                          <td>{item.userId}</td>
+                          <td>{item.userId}</td>
+                          <td><button className='btn btn-outline-primary'><i class="fa-solid fa-pen-to-square"></i></button></td>
+                </tr>
+                ))}
           </tbody>
       </table>
     </div>

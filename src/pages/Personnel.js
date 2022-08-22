@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import Profile from './Profile'
 import  Modal  from 'react-bootstrap/Modal'
 import {Button} from 'react-bootstrap'
-import { useState } from 'react'
+import { useDownloadExcel } from 'react-export-table-to-excel'
 import './Personnel.css'
 
 export default function Personnel() {
@@ -10,12 +10,41 @@ export default function Personnel() {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
+    //exporter la table des salariés........................................................
+    const [data, getData] = useState([])
+    const URL = 'https://jsonplaceholder.typicode.com/posts';
+ 
+    useEffect(() => {
+        fetchData()
+    }, [])
+ 
+ 
+    const fetchData = () => {
+        fetch(URL)
+            .then((res) =>
+                res.json())
+ 
+            .then((response) => {
+                console.log(response);
+                getData(response);
+            })
+ 
+    }
+    const tableRef = useRef(null);
+    const { onDownload } = useDownloadExcel({
+        currentTableRef: tableRef.current,
+        filename: 'Users table',
+        sheet: 'Users'
+    })
+//........................................................................................................................
   return (
     <div className='personnel'>
         <h4>Gestion des salariés</h4>
-        <div id="ab">
-            <button type='button' className='btn btn-warning' onClick={handleShow}><i className='fa-solid fa-plus'></i>NOUVEAU SALARIE</button>
+        <div className='ajout-export'>
+            <button type='button' className='btn btn-warning' onClick={handleShow}><i className='fa-solid fa-user-plus'></i>Nouveau salarié</button>
+          <button type='button' className='btn btn-success' onClick={onDownload}><i className='fa-solid fa-file-excel' ></i>EXPORT EXCEL</button>
+          <button type='button' className='btn btn-primary'><i className='fa-solid fa-print'></i>IMPRIMER</button>
+        </div>
             
         <Modal
             size='xl'
@@ -134,9 +163,6 @@ export default function Personnel() {
                 <Button variant="success">Valider</Button>
                 </Modal.Footer>
             </Modal>
-            <button type='button' className='btn btn-success'><i className='fa-solid fa-file-excel'></i>EXPORT EXCEL</button>
-            <button type='button' className='btn btn-primary'><i className='fa-solid fa-print'></i>IMPRIMER</button>
-        </div>
         <h5>Filtres</h5>
         <form className='row'>
             <div className="mb-3 col-md-5 col-sm-8">
@@ -160,7 +186,7 @@ export default function Personnel() {
             </div>
         </form>
 
-        <table className="p">
+        <table className="table p" ref={tableRef}>
             <thead>
                 <tr>
                     <th >Nom</th>
@@ -176,54 +202,20 @@ export default function Personnel() {
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td>@mdo</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td><button><i class="fa-solid fa-user-xmark"></i></button></td>
-                </tr>
-                <tr>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td>@mdo</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td><button><i class="fa-solid fa-user-xmark"></i></button></td>
-                </tr>
-                <tr>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td>@mdo</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td><button><i class="fa-solid fa-user-xmark"></i></button></td>
-                </tr>
-                <tr>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td>@mdo</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td><button><i class="fa-solid fa-user-xmark"></i></button></td>
-                </tr>
+               {data.map((item, i) => (
+                    <tr key={i}>
+                        <td>{item.userId}</td>
+                        <td>{item.id}</td>
+                        <td>{item.title}</td>
+                        <td>{item.body}</td>
+                        <td>{item.userId}</td>
+                        <td>{item.id}</td>
+                        <td>{item.title}</td>
+                        <td>{item.userId}</td>
+                        <td><button className='btn btn-outline-primary'><i class="fa-solid fa-pen-to-square"></i></button></td>
+                        <td><button className='btn btn-outline-danger'><i class="fa-solid fa-user-xmark"></i></button></td>
+               </tr>
+               ))}
             </tbody>
         </table>
 

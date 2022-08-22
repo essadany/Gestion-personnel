@@ -1,11 +1,11 @@
-/* @media(min-width:992px){
+ @media(min-width:992px){
     
 
     .img_logo{
         width:500px;
         height:200;
     }
-    .btn{
+    .connecter{
         width: 50%;
     }
 }
@@ -18,7 +18,7 @@
         width: 250px;
         height: 80px;
     }
-    .container
+    .form-connect
     {
         flex-direction: column;
         justify-content: center;
@@ -33,17 +33,16 @@
     }
 
 }
-.mr{
-    width: 100%;
-    height: auto;
-}
 h1 {
     color: #15c07c;
     font-size: 2px;
  font-size: small;
 }
- body{
+.mr{
+    width: 100%;
+    height: 100%;
+    margin: auto;
     text-align: center;
-    margin-top: 100px;
+    padding-top: 100px;
     background-color: #E5E7E9; 
-} */
+}

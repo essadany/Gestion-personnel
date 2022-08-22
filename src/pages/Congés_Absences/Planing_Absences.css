@@ -1,30 +1,8 @@
-@media(max-width:992px){
-    #ab button{
-        font-size: smaller;
-        display: inline;
-        width: 120px;
-        height: 50px;
-        margin-right: 10px;
-    }
-}
 @media(min-width:992px){
-    #ab{
-        z-index: 2;
-        width: 200px;
-        height: 100%;
-        float: right;
-        background-color: #edf2f4;
-        position: relative;
-        padding: auto 50px;
-        margin-bottom: 50px;
+    .planning_Absences{
+        margin-left: 90px;
     }
-    #ab button{
-        width: 150px;
-        height: 60px;
-        display: block;
-        margin:50px 20px;
-        
-    }
+    
 }
 
 h4{

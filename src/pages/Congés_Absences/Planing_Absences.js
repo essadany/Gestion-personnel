@@ -14,10 +14,12 @@ export default function Planing_Absences() {
   return (
     <div className='planning_Absences'>
         <h4>Planing absences</h4>
-        <div id="ab">
+        <div className='ajout-export'>
             <button type='button' className='btn btn-warning' onClick={handleShow}><i className='fa-solid fa-plus'></i>NOUVELLE DEMANDE</button>
+          <button type='button' className='btn btn-success'><i className='fa-solid fa-file-excel'></i>EXPORT EXCEL</button>
+        </div>
             
-  <Modal
+        <Modal
             size='lg'
             show={show}
             onHide={handleClose}
@@ -38,10 +40,6 @@ export default function Planing_Absences() {
             <Button variant="success">Valider</Button>
             </Modal.Footer>
         </Modal>
-
-            <button type='button' className='btn btn-success'><i className='fa-solid fa-file-excel'></i>EXPORT EXCEL</button>
-            <button type='button' className='btn btn-primary'><i className='fa-solid fa-print'></i>IMPRIMER</button>
-        </div>
         <h5>Filtres</h5>
         <form className='row'> 
             <div className="form-group col-md-5 col-sm-8">

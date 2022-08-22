@@ -16,7 +16,6 @@ export const Navs = () => {
             <Nav.Link href='/Accueil'>Acceuil</Nav.Link>
             <Nav.Link href='/Profile'>Mon Profile</Nav.Link>
             <Nav.Link href='/Personnel'>Gérer le personnel</Nav.Link>
-            <Nav.Link href='/Gestion_production'></Nav.Link>
             <NavDropdown title="Gestion du production" id="basic-nav-dropdown">
               <NavDropdown.Item href='/Gestion_production'>Gestion des projets</NavDropdown.Item>
               <NavDropdown.Item href='/Gestion_taches'>
