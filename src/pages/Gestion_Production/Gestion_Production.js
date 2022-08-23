@@ -9,7 +9,33 @@ import React, { useState, useEffect, useRef } from 'react'
 import { useDownloadExcel } from 'react-export-table-to-excel'
 
 export default function Gestion_Production() {
-  //exporter la table des salariés........................................................
+  //filter table
+  const [selectedDate, setSelectedDate] = useState([]);
+  const [selectedProjet, setSelectedProjet] = useState([]);
+  const [selectedClient, setSelectedClient] = useState([]);
+  const [selectedCat1, setSelectedCat1] = useState([]);
+  const [selectedCat2, setSelectedCat2] = useState([]);
+  const filterDate = (e) => {
+    console.log(e.target.value);
+    setSelectedDate(e.target.value);
+  }
+  const filterProjet = (e) => {
+      console.log(e.target.value);
+      setSelectedProjet(e.target.value);
+  }
+  const filterClient = (e) => {
+    console.log(e.target.value);
+    setSelectedClient(e.target.value);
+  }
+  const filterCat1 = (e) => {
+      console.log(e.target.value);
+      setSelectedCat1(e.target.value);
+  }
+  const filterCat2 = (e) => {
+    console.log(e.target.value);
+    setSelectedCat2(e.target.value);
+};//////////////////////////////////////
+  //exporter la table des projets........................................................
   const [data, getData] = useState([])
   const URL = 'https://jsonplaceholder.typicode.com/posts';
 
@@ -43,8 +69,8 @@ export default function Gestion_Production() {
 * based on which dropdown is selected
 */
 const changeSelectOptionHandler = (event) => {
-	setSelected(event.target.value);
-};
+    setSelected(event.target.value);
+}
 
 /** Different arrays for different dropdowns */
 const KYNTUS = ["ANFI","VDLF","ELN FTTH", "FIBRE 31", "FIRALP_ENN27", "H-TEL-ANFI", "SCOPELEC","SYADEN CD11", "LOSANGE", "FTTE_ORANGE"];
@@ -86,7 +112,7 @@ switch (selected){
   case "ORANGE": type = ORANGE; break;
   case "ETPR": type = ETPR; break;
   case "ICART_TELECOM": type = ICART; break;
-  case "EOS_TELECOM": type = EOS; break;
+  case "EOS TELECOM": type = EOS; break;
   case "CTBE": type = CTBE; break;
 }
 
@@ -108,7 +134,7 @@ if (type) {
       <h4>Gestion des projets</h4>
       <div className='ajout-export'>
           <button type="button" className="btn btn-success CreationP" onClick={handleShow}><i className="fa-solid fa-plus"></i>Créer un nouveau projet</button>
-          <button type='button' className='btn btn-success'><i className='fa-solid fa-file-excel'></i>EXPORT EXCEL</button>
+          <button type='button' className='btn btn-success' onClick={onDownload}><i className='fa-solid fa-file-excel'></i>EXPORT EXCEL</button>
             <button type='button' className='btn btn-primary'><i className='fa-solid fa-print'></i>IMPRIMER</button>
         </div>
      <Modal
@@ -135,48 +161,42 @@ if (type) {
         <legend>Filtres</legend>
         <div className="mb-3 col-md-5 col-sm-8">
             <label for="exampleFormControlInput1" className="form-label">Date  du debut</label>
-            <input type="date" className="form-control" id="exampleFormControlInput1"  required/>
+            <input type="date" className="form-control" id="exampleFormControlInput1" onChange={filterDate} />
         </div>
             <div className='col-md-5 col-sm-8'>
                 <label for='client'>Client</label>
-                <select className="form-select client " name='client' aria-label="Default select example" onChange={changeSelectOptionHandler} required>
-                    <option selected value="KYNTUS">KYNTUS</option>
-                    <option value="CIRCET" >CIRCET</option>
-                    <option value="AXIONE">AXIONE</option>
-                    <option value="JSC">JSC</option>
-                    <option value="SOGEA">SOGEA</option>
-                    <option value="ETM">ETM</option>
-                    <option value="IDOM">IDOM</option>
-                    <option value="SCOPELEC_DR_SUD">SCOPELEC_DR_SUD</option>
-                    <option value="SCOPELEC_DR_SUD_OUEST">SCOPELEC_DR_SUD_OUEST</option>
-                    <option value="SCOPELEC_DR_SUD_EST">SCOPELEC_DR_SUD_EST</option>
-                    <option value="BFC_Fibre">BFC Fibre</option>
-                    <option value="ORANGE">ORANGE</option>
-                    <option value="ETPR">ETPR</option>
-                    <option value="ICART_TELECOM">ICART TELECOM</option>
-                    <option value="EOS_TELECOM">EOS TELECOM</option>
-                    <option value="CTBE">CTBE</option>
+                <select className="form-select client " name='client' aria-label="Default select example" onChange={filterClient} >
+                   <option selected></option>
+                  {data
+                    .map((item,i)=>(<option key={i} value={i}>{item.id}</option>))
+                  }
                 </select>
             </div>
             <div className='col-md-5 col-sm-8'>
                 <label for="equipe">Projet</label>
-                <select className="form-select projet" name='projet' aria-label="Default select example" required >
-                  {options}
+                <select className="form-select projet" name='projet' aria-label="Default select example" onChange={filterProjet} required >
+                  <option selected></option>
+                  {data
+                    .map((item,i)=>(<option key={i} value={i}>{item.id}</option>))
+                  }
                 </select>
             </div>
             <div className='col-md-5 col-sm-8'>
             <label for="equipe">Catégorie1</label>
-                <select className="form-select projet" aria-label="Default select example" required>
-                    <option valure="1">Génie civil</option>
-                    <option value="2">Autre</option>
+                <select className="form-select projet" aria-label="Default select example" onChange={filterCat1} required>
+                    <option selected></option>
+                    <option value="3">Génie civil</option>
+                    <option value="4">Autre</option>
                 </select>
             </div>
             <div className='col-md-5 col-sm-8'>
-            <label for="equipe">Catégorie2</label>
-                <select className="form-select projet" aria-label="Default select example" required>
-                    <option valure="1">APS</option>
+            <label for="cat2">Catégorie2</label>
+                <select className="form-select projet" aria-label="Default select example" onChange={filterCat2} required>
+                    <option selected></option>
+                    <option value="1">APS</option>
                     <option value="2">APD</option>
                     <option value="3">DOE</option>
+                    
                 </select>
             </div>
             <div>
@@ -184,7 +204,7 @@ if (type) {
             </div>
       </form>
       
-      <table className="table">
+      <table className="table" ref={tableRef}>
           <thead>
               <tr>
                   <th scope="col">Date</th>
@@ -199,7 +219,13 @@ if (type) {
               </tr>
           </thead>
           <tbody>
-            {data.map((item, i) => (
+            {data
+            
+                .filter((value) => {
+                  return String(value.id) === String(selectedClient)||  String(value.title) === String(selectedProjet) 
+                  ||  String(value.title) === String(selectedCat1) ||  String(value.title) === String(selectedCat2)
+                  })
+              .map((item, i) => (
                       <tr key={i}>
                           <td>{item.userId}</td>
                           <td>{item.id}</td>
@@ -209,10 +235,10 @@ if (type) {
                           <td>{item.id}</td>
                           <td>{item.title}</td>
                           <td>{item.userId}</td>
-                          <td>{item.userId}</td>
                           <td><button className='btn btn-outline-primary'><i class="fa-solid fa-pen-to-square"></i></button></td>
                 </tr>
-                ))}
+                ))
+                }
           </tbody>
       </table>
     </div>
