@@ -1,10 +1,9 @@
 import React from 'react';
-import './Documents.css';
 import Accordion from 'react-bootstrap/Accordion';
 
 export default function Documents() {
   return (
-    <div className='documents'>
+    <div className='main'>
             <h2 style={{height: '100px'}}>Espace documents</h2>
             <h4>Mes documents</h4>
             <Accordion defaultActiveKey="0">

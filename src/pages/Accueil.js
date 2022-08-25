@@ -1,11 +1,10 @@
 import React from "react";
-import "./Accueil.css";
 import { Link } from "react-router-dom";
 
  
  export default function Accueil() {
    return (
-     <div className="row accueil">
+     <div className="row main">
         <div className="card col-lg-3 col-sm-10">
             <div className="card-header">PROCHAINES ABSENCES</div>
             <div className="card-body">

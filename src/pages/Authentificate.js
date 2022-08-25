@@ -1,6 +1,5 @@
 import React from 'react'
 import logo from '../assets/img/logo.png'
-import './Auth.css'
 import Accueil from './Accueil'
 
 const Authentificate = () => {

@@ -1,5 +1,4 @@
 import React from 'react'
-import "./Planing_Absences.css"
 import Calendrier from '../Calendrier';
 import { Modal } from 'react-bootstrap';
 import {Button} from 'react-bootstrap';

@@ -1,9 +1,8 @@
 import React from 'react';
-import "./Profile.css";
 export default function () {
   return (
-    <div className="profile ">
-        <form className='row'>
+    <div className="main ">
+        <form className='row formP'>
                     <legend className="titres">Mes informations personnelles</legend>
                         <div className=" form-group col-lg-3 col-md-5 col-sm-10">
                             <label for="nom" className="form-label form-label-sm">Nom</label>
