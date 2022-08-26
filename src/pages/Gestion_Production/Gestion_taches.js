@@ -7,6 +7,7 @@ import Production from './production'
 import Select from 'react-select'
 import React, { useState, useEffect, useRef } from 'react'
 import { useDownloadExcel } from 'react-export-table-to-excel'
+import { Navs } from '../../components/Navs'
 export default function Gestion_taches() {
   //Trier la table
   const [order,setOrder] = useState("ASC")
@@ -168,8 +169,10 @@ const changeSelectOptionHandler = (event) => {
   const handleShow = () => setShow(true);
     
   return (
-    
+    <>
+    <Navs/>
     <div className="main">
+      
       <h4>Gestion des activités</h4>
      
      <div className='ajout-export'>
@@ -294,8 +297,8 @@ const changeSelectOptionHandler = (event) => {
             </div>
       </form>
       
-      
-      <table className="table table-bordered">
+      <div className='table-responsive'>
+        <table className="table table-bordered">
           <thead>
               <tr>
                   <th scope="col" onClick={()=>sortingD("date")}>Date</th>
@@ -335,7 +338,9 @@ const changeSelectOptionHandler = (event) => {
             ))
             }
           </tbody>
-      </table>
-    </div>
+        </table>
+      </div>
+      
+    </div></>
   )
 }

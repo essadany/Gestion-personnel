@@ -1,8 +1,10 @@
 import React from 'react';
 import Accordion from 'react-bootstrap/Accordion';
-
+import { Navs } from '../components/Navs';
 export default function Documents() {
   return (
+    <>
+    <Navs/>
     <div className='main'>
             <h2 style={{height: '100px'}}>Espace documents</h2>
             <h4>Mes documents</h4>
@@ -34,6 +36,6 @@ export default function Documents() {
                     </Accordion.Body>
                 </Accordion.Item>
             </Accordion>
-    </div>
+    </div></>
   )
 }

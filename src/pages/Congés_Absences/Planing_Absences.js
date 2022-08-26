@@ -4,14 +4,15 @@ import { Modal } from 'react-bootstrap';
 import {Button} from 'react-bootstrap';
 import { useState } from 'react';
 import Creer_absences from './Creer_absences';
-
+import { Navs } from '../../components/Navs';
 export default function Planing_Absences() {
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
   return (
-    <div className='planning_Absences'>
+    <div className='main'>
+        
         <h4>Planing absences</h4>
         <div className='ajout-export'>
             <button type='button' className='btn btn-warning' onClick={handleShow}><i className='fa-solid fa-plus'></i>NOUVELLE DEMANDE</button>

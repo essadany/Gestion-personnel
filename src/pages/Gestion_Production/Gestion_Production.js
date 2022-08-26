@@ -6,7 +6,7 @@ import { Button } from 'react-bootstrap'
 import Production from './production'
 import React, { useState, useEffect, useRef } from 'react'
 import { useDownloadExcel } from 'react-export-table-to-excel'
-
+import { Navs } from '../../components/Navs'
 export default function Gestion_Production() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -87,27 +87,6 @@ const sortingN = (col)=>{
     console.log(e.target.value);
     setSelectedCat2(e.target.value);
 };//////////////////////////////////////
-//Liste des projets
-
-const [data1, getData1] = useState([])
-const url1 = `http://localhost:8000/api/searchp/${selectedClient}` //apres ....
-
-  useEffect(() => {
-      fetchData1()
-  }, [])
-
-
-  const fetchData1 = () => {
-      fetch(url1)
-          .then((res) =>
-              res.json())
-
-          .then((response) => {
-              console.log(response);
-              getData1(response);
-          })
-
-  }
   //exporter la table des projets........................................................
   const [data, getData] = useState([])
   const URL = 'http://127.0.0.1:8000/api/listp';
@@ -136,11 +115,6 @@ const url1 = `http://localhost:8000/api/searchp/${selectedClient}` //apres ....
     })
   //........................................................................................................................
     const [show, setShow] = useState(false);
-    const [selected, setSelected] = React.useState("");
-
-/** Function that will set different values to state variable
-* based on which dropdown is selected
-*/
 
 //Ajouter un projet
 const [name,setName]=useState("")
@@ -166,16 +140,17 @@ const [name,setName]=useState("")
         })
         res=await res.json()
         alert("Le projet à été ajouté avec succès")
-        
+      //filtrer la liste des projets selon la liste des clients  
     }///////////////////////
   return (
-    
+    <>
+    <Navs/>
     <div className="main">
+      
       <h4>Gestion des projets</h4>
       <div className='ajout-export'>
           <button type="button" className="btn btn-success CreationP" onClick={handleShow}><i className="fa-solid fa-plus"></i>Créer un nouveau projet</button>
           <button type='button' className='btn btn-success' onClick={onDownload}><i className='fa-solid fa-file-excel'></i>EXPORT EXCEL</button>
-          <button type='button' className='btn btn-primary'><i className='fa-solid fa-print'></i>IMPRIMER</button>
         </div>
      <Modal
         size='lg'
@@ -249,7 +224,7 @@ const [name,setName]=useState("")
           <Button variant="primary" onClick={creerProjet}>Enregistrer</Button>
         </Modal.Footer>
       </Modal>
-      <form className='row' name='formulaire'>
+      <form className='row form-filtre' name='formulaire'>
         <legend>Filtres</legend>
             <div className='col-md-5 col-sm-8'>
                 <label for='client'>Client</label>
@@ -259,12 +234,13 @@ const [name,setName]=useState("")
                     .map((item,i)=>(<option key={i} value={item.client}>{item.client}</option>))
                   }
                 </select>
+
             </div>
             <div className='col-md-5 col-sm-8'>
                 <label for="equipe">Projet</label>
                 <select className="form-select projet" name='projet' aria-label="Default select example" onChange={filterProjet} required >
                   <option value="" selected></option>
-                  {data1
+                  {data
                     .map((item,i)=>(<option key={i} value={item.name}>{item.name}</option>))
                   }
                 </select>
@@ -289,15 +265,15 @@ const [name,setName]=useState("")
                 </select>
             </div>
       </form>
-      
-      <table className="table table-bordered" ref={tableRef}>
+      <div className='table-responsive table-wrapper-scroll-y my-custom-scrollbar'>
+      <table className="table table-bordered " ref={tableRef}>
           <thead>
               <tr>
                   <th scope="col" onClick={()=>sortingD("date")}>Date</th>
                   <th scope="col" onClick={()=>sortingS("client")}>Client</th>
                   <th scope="col" onClick={()=>sortingS("name")}>Projet</th>
-                  <th scope="col" onClick={()=>sortingS("categ1")}>Catégorie1</th>
-                  <th scope="col" onClick={()=>sortingS("categ2")}>Catégorie2</th>
+                  <th scope="col" >Catégorie1</th>
+                  <th scope="col" >Catégorie2</th>
                   <th scope="col" onClick={()=>sortingS("activite")}>Activités</th>
                   <th scope="col" onClick={()=>sortingN("objectif")}>Production</th>
                   <th scope="col">Commentaire</th>
@@ -311,8 +287,8 @@ const [name,setName]=useState("")
                   if (String(selectedClient)=="" && String(selectedProjet)=="" && (selectedCat1)=="" && String(selectedCat2)==""){
                     return String(value.client) !== String(selectedClient)
                   }else{
-                      return String(value.client) === String(selectedClient)||  String(value.name) === String(selectedProjet) 
-                  ||  String(value.categ1) === String(selectedCat1) ||  String(value.categ2) === String(selectedCat2)
+                      return (String(value.client) === String(selectedClient)||  String(value.name) === String(selectedProjet) 
+                  ||  String(value.categ1) === String(selectedCat1) ||  String(value.categ2) === String(selectedCat2))
                   }
                   })
               .map((item, i) => (
@@ -330,7 +306,9 @@ const [name,setName]=useState("")
                 ))
                 }
           </tbody>
-      </table>
-    </div>
+        </table>
+      </div>
+      
+    </div></>
   )
 }

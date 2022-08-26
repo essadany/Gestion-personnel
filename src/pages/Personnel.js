@@ -4,7 +4,7 @@ import  Modal  from 'react-bootstrap/Modal'
 import {Button} from 'react-bootstrap'
 import { useDownloadExcel } from 'react-export-table-to-excel'
 import Select from 'react-select'
-
+import { Navs } from '../components/Navs'
 export default function Personnel() {
   //Trier la table
   const [order,setOrder] = useState("ASC")
@@ -158,12 +158,12 @@ export default function Personnel() {
     alert("Le salarié à été ajouter avec succés")
   } /////////////////////////////////////////////////////////
   return (
+    <>
     <div className='main'>
         <h4>Gestion des salariés</h4>
         <div className='ajout-export'>
-            <button type='button' className='btn btn-warning' onClick={handleShow}><i className='fa-solid fa-user-plus'></i>Nouveau salarié</button>
+          <button type='button' className='btn btn-warning' onClick={handleShow}><i className='fa-solid fa-user-plus'></i>Nouveau salarié</button>
           <button type='button' className='btn btn-success' onClick={onDownload}><i className='fa-solid fa-file-excel' ></i>EXPORT EXCEL</button>
-          <button type='button' className='btn btn-primary'><i className='fa-solid fa-print'></i>IMPRIMER</button>
         </div>
             
         <Modal
@@ -313,8 +313,8 @@ export default function Personnel() {
                 </select>
             </div>
         </form>
-
-        <table className="table table-bordered " ref={tableRef}>
+        <div className='table-responsive'>
+            <table className="table table-bordered " ref={tableRef}>
             <thead>
                 <tr>
                     <th onClick={()=>sortingS("nom")}>Nom</th>
@@ -358,9 +358,8 @@ export default function Personnel() {
                ))
                }
             </tbody>
-        </table>
-
-      
-    </div>
+            </table>
+        </div>
+    </div></>
   )
 }

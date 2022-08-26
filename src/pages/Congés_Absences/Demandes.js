@@ -243,8 +243,8 @@ const { onDownload } = useDownloadExcel({
                 </select>
             </div>
         </form>
-        
-        <table className="table table-bordered" ref={tableRef}>
+        <div className='table-responsive'>
+            <table className="table table-bordered" ref={tableRef}>
             <thead>
                 <tr>
                     <th scope="col" onClick={()=>sortingD("debut")}>Debut</th>
@@ -276,7 +276,9 @@ const { onDownload } = useDownloadExcel({
                }
                
             </tbody>
-        </table>
+            </table>
+        </div>
+        
     </div>
   )
 }

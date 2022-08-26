@@ -1,10 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
- 
+import { Navs } from "../components/Navs";
  export default function Accueil() {
    return (
+    <>
+    <Navs/>
      <div className="row main">
+        
         <div className="card col-lg-3 col-sm-10">
             <div className="card-header">PROCHAINES ABSENCES</div>
             <div className="card-body">
@@ -39,7 +41,7 @@ import { Link } from "react-router-dom";
             </div>
         </div>
 
-     </div>
+     </div></>
    )
  }
  

@@ -20,10 +20,10 @@ import Personnel from './pages/Personnel';
 function App() {
   return (
     <div className='App'>
-      
-    <Navs/>
+    
     <Router>
       <Routes>
+          <Route exact path='/' element={<Authentificate/>}>  </Route>
           <Route exact path='/Accueil' element={< Accueil />}>  </Route>
           <Route exact path='/Profile' element={<Profile />}>  </Route>
           <Route exact path='/Personnel' element={<Personnel />}></Route>
@@ -36,7 +36,7 @@ function App() {
           <Route exact path='/Messages' element={<Messages />}>  </Route>
           <Route exact path='/Authentificate' element={<Authentificate />}>  </Route>
           <Route exact path='/production' element={<production />}>  </Route>
-          <Route  path='*' element={<p>There's nothing here: 404!</p>}>  </Route>
+          <Route path='*' element={<p>There's nothing here: 404!</p>}>  </Route>
       </Routes>
     </Router>
     </div>

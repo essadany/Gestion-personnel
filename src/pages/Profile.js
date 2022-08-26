@@ -1,6 +1,9 @@
 import React from 'react';
+import { Navs } from '../components/Navs';
 export default function () {
   return (
+    <>
+    <Navs/>
     <div className="main ">
         <form className='row formP'>
                     <legend className="titres">Mes informations personnelles</legend>
@@ -100,6 +103,6 @@ export default function () {
                         </div>
                       
         </form>
-    </div>
+    </div></>
   )
 }
