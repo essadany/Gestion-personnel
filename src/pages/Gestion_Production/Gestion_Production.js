@@ -10,6 +10,8 @@ import { Navs } from '../../components/Navs'
 export default function Gestion_Production() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const handleClose1 = () => setShow(false);
+  const handleShow1 = () => setShow(true);
   //Trier la table
   const [order,setOrder] = useState("ASC")
   const sortingD = (col)=>{
@@ -104,6 +106,7 @@ const sortingN = (col)=>{
             .then((response) => {
                 console.log(response);
                 getData(response);
+                
             })
 
     }
@@ -117,16 +120,17 @@ const sortingN = (col)=>{
     const [show, setShow] = useState(false);
 
 //Ajouter un projet
-const [name,setName]=useState("")
-    const [client,setClient]=useState("")
-    const [date,setDate]=useState("")
-    const [activite,setActivite]=useState("")
-    const [objectif,setObjectif]=useState("")
-    const [percentage,setPercentage]=useState("")
-    const [categ1,setCateg1]=useState("")
-    const [categ2,setCateg2]=useState("")
-    const [commentaire,setCommentaire]=useState("")
-    const [eq,setEq]=useState("")
+    const [id,setId]=useState(null)
+    const [name,setName]=useState([])
+    const [client,setClient]=useState([])
+    const [date,setDate]=useState([])
+    const [activite,setActivite]=useState([])
+    const [objectif,setObjectif]=useState([])
+    const [percentage,setPercentage]=useState([])
+    const [categ1,setCateg1]=useState([])
+    const [categ2,setCateg2]=useState([])
+    const [commentaire,setCommentaire]=useState([])
+    const [eq,setEq]=useState([])
     async function creerProjet()
     {
         let item={name,client,date,activite,objectif,percentage,commentaire,date,eq,categ1,categ2}
@@ -142,6 +146,45 @@ const [name,setName]=useState("")
         alert("Le projet à été ajouté avec succès")
       //filtrer la liste des projets selon la liste des clients  
     }///////////////////////
+  function selectProjet(i)
+  {
+      let item=data[i]
+       setActivite(item.activite)
+        setObjectif(item.objectif)
+        setCommentaire(item.commentaire)
+        setId(item.id)
+  }
+    // Modifier le projet
+  function updateProjet(){
+    let item={activite,objectif,commentaire,id}
+    console.warn("item",item)
+    fetch(`http://localhost:8000/api/updateProjet/${id}`, {
+      method: 'PUT',
+      headers:{
+        'Accept':'application/json',
+        'Content-Type':'application/json'
+      },
+      body:JSON.stringify(item)
+    }).then((result) => {
+      result.json().then((resp) => {
+        console.warn(resp)
+        fetchData()
+      })
+    })
+    alert("Votre projet a été modifié")
+
+  }
+  //Supprimer un projet
+  function deleteProjet(id) {
+    fetch(`http://127.0.0.1:8000/api/delete/${id}`, {
+      method: 'DELETE'
+    }).then((result) => {
+      result.json().then((resp) => {
+        console.warn(resp)
+        fetchData()
+      })
+    })
+  }
   return (
     <>
     <Navs/>
@@ -277,7 +320,9 @@ const [name,setName]=useState("")
                   <th scope="col" onClick={()=>sortingS("activite")}>Activités</th>
                   <th scope="col" onClick={()=>sortingN("objectif")}>Production</th>
                   <th scope="col">Commentaire</th>
+                  <th scope="col">Traité par</th>
                   <th scope="col">Modifier</th>
+                  <th scope="col">Supprimer</th>
               </tr>
           </thead>
           <tbody >
@@ -301,12 +346,20 @@ const [name,setName]=useState("")
                           <td>{item.activite}</td>
                           <td>{item.objectif}</td>
                           <td>{item.commentaire}</td>
-                          <td><button className='btn btn-outline-primary'><i class="fa-solid fa-pen-to-square"></i></button></td>
+                          <td></td>
+                          <td><button className='btn btn-outline-primary' onClick={()=>selectProjet(i)}><i class="fa-solid fa-pen-to-square"></i></button></td>
+                          <td><button className='btn btn-outline-danger' onClick={()=>deleteProjet(item.id)}><i class="fa-solid fa-trash-can"></i></button></td>
                 </tr>
                 ))
                 }
           </tbody>
         </table>
+        <div>
+          <input type="text" value={activite}  onChange={(e)=>{setActivite(e.target.value)}}/> <br /><br />
+          <input type="number" value={objectif}  onChange={(e)=>{setObjectif(e.target.value)}}/> <br /><br />
+          <input type="text" value={commentaire}   onChange={(e)=>{setCommentaire(e.target.value)}} /> <br /><br />
+          <button onClick={updateProjet} >Modifier</button>  
+      </div>
       </div>
       
     </div></>

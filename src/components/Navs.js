@@ -36,7 +36,7 @@ export const Navs = () => {
             <Nav.Link href="/notes_frais">Notes de frais</Nav.Link>
             <Nav.Link href='/documents'>Mes documents</Nav.Link>
             <Nav.Link href='/message'>Messages</Nav.Link>
-            <Nav.Link href="/deconnexion">Deconnexion</Nav.Link>
+            <Nav.Link href="/Authentificate">Deconnexion</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

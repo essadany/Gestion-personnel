@@ -105,6 +105,7 @@ export default function Gestion_taches() {
 
     }
   //Ajouter une activite
+  const [id,setId] = useState("")
   const [name,setName]=useState("")
   const [client,setClient]=useState("")
   const [date,setDate]=useState("")
@@ -158,12 +159,48 @@ export default function Gestion_taches() {
     const [show, setShow] = useState(false);
     const [selected, setSelected] = React.useState("");
 
-/** Function that will set different values to state variable
-* based on which dropdown is selected
-*/
+ //Supprimer une activité
+ function deleteActivite(id) {
+  fetch(`http://127.0.0.1:8000/api/delete/${id}`, {
+    method: 'DELETE'
+  }).then((result) => {
+    result.json().then((resp) => {
+      console.warn(resp)
+      fetchData()
+    })
+  })
+}
 const changeSelectOptionHandler = (event) => {
 	setSelected(event.target.value);
 };
+function selectProjet(i)
+  {
+      let item=data[i]
+       setActivite(item.activite)
+        setObjectif(item.objectif)
+        setCommentaire(item.commentaire)
+        setId(item.id)
+  }
+// Modifier l'activite
+function updateProjet(){
+  let item={activite,objectif,commentaire,id}
+  console.warn("item",item)
+  fetch(`http://localhost:8000/api/updateProjet/${id}`, {
+    method: 'PUT',
+    headers:{
+      'Accept':'application/json',
+      'Content-Type':'application/json'
+    },
+    body:JSON.stringify(item)
+  }).then((result) => {
+    result.json().then((resp) => {
+      console.warn(resp)
+      fetchData()
+    })
+  })
+  alert("Votre projet a été modifié")
+
+}
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -253,10 +290,6 @@ const changeSelectOptionHandler = (event) => {
       </Modal>
       <form className='row'>
         <legend>Filtres</legend>
-        <div className="mb-3 col-md-5 col-sm-8">
-            <label for="exampleFormControlInput1" className="form-label">Date</label>
-            <input type="date" className="form-control" id="exampleFormControlInput1" onChange={filterDate} required/>
-        </div>
             <div className='col-md-5 col-sm-8'>
                 <label for='client'>Client</label>
                 <select className="form-select client " aria-label="Default select example" onChange={filterClient} required>
@@ -310,6 +343,7 @@ const changeSelectOptionHandler = (event) => {
                   <th scope="col" onClick={()=>sortingN("objectif")}>Production</th>
                   <th scope="col">Commentaire</th>
                   <th scope="col">Modifier</th>
+                  <th scope="col">Supprimer</th>
               </tr>
           </thead>
           <tbody>
@@ -333,12 +367,19 @@ const changeSelectOptionHandler = (event) => {
                           <td>{item.activite}</td>
                           <td>{item.objectif}</td>
                           <td>{item.commentaire}</td>
-                      <td><button className='btn btn-outline-primary'><i class="fa-solid fa-pen-to-square"></i></button></td>
+                      <td><button className='btn btn-outline-primary' onClick={()=>selectProjet(i)}><i class="fa-solid fa-pen-to-square"></i></button></td>
+                      <td><button className='btn btn-outline-danger' onClick={()=>deleteActivite(item.id)}><i class="fa-solid fa-trash-can"></i></button></td>
             </tr>
             ))
             }
           </tbody>
         </table>
+        <div>
+          <input type="text" value={activite}  onChange={(e)=>{setActivite(e.target.value)}}/> <br /><br />
+          <input type="number" value={objectif}  onChange={(e)=>{setObjectif(e.target.value)}}/> <br /><br />
+          <input type="text" value={commentaire}   onChange={(e)=>{setCommentaire(e.target.value)}} /> <br /><br />
+          <button onClick={updateProjet} >Modifier</button>  
+      </div>
       </div>
       
     </div></>

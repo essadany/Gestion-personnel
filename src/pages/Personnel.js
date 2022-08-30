@@ -157,6 +157,17 @@ export default function Personnel() {
     res=await res.json()
     alert("Le salarié à été ajouter avec succés")
   } /////////////////////////////////////////////////////////
+  // Supprimer un salarié
+  function deleteUser(id) {
+    fetch(`http://localhost:8000/api/register/${id}`, {
+      method: 'DELETE'
+    }).then((result) => {
+      result.json().then((resp) => {
+        console.warn(resp)
+        fetchData()
+      })
+    })
+  }
   return (
     <>
     <div className='main'>
@@ -353,7 +364,7 @@ export default function Personnel() {
                         <td></td>
                         <td></td>
                         <td><button className='btn btn-outline-primary'><i class="fa-solid fa-pen-to-square"></i></button></td>
-                        <td><button className='btn btn-outline-danger'><i class="fa-solid fa-user-xmark"></i></button></td>
+                        <td><button className='btn btn-outline-danger' onClick={()=>deleteUser(item.id)}><i class="fa-solid fa-user-xmark"></i></button></td>
                </tr>
                ))
                }

@@ -11,6 +11,8 @@ export default function Planing_Absences() {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
   return (
+    <>
+    <Navs />
     <div className='main'>
         
         <h4>Planing absences</h4>
@@ -80,6 +82,6 @@ export default function Planing_Absences() {
             </div>
         </form>
         <Calendrier />
-    </div>
+    </div></>
   )
 }
