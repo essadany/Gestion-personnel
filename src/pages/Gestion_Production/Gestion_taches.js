@@ -116,9 +116,11 @@ export default function Gestion_taches() {
   const [categ2,setCateg2]=useState("")
   const [commentaire,setCommentaire]=useState("")
   const [eq,setEq]=useState("")
+  const idS = localStorage.getItem("email")
   async function ajouterProd()
   {
-      let item={name,client,date,activite,objectif,percentage,commentaire,date,eq,categ1,categ2}
+      
+      let item={idS,name,client,date,activite,objectif,percentage,commentaire,date,eq,categ1,categ2}
       let res=await fetch("http://localhost:8000/api/addprojet",{
           method:'POST',
           body:JSON.stringify(item),

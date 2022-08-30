@@ -131,9 +131,10 @@ const sortingN = (col)=>{
     const [categ2,setCateg2]=useState([])
     const [commentaire,setCommentaire]=useState([])
     const [eq,setEq]=useState([])
+    const idS = localStorage.getItem("email")
     async function creerProjet()
-    {
-        let item={name,client,date,activite,objectif,percentage,commentaire,date,eq,categ1,categ2}
+    {   
+        let item={idS,name,client,date,activite,objectif,percentage,commentaire,date,eq,categ1,categ2}
         let res=await fetch("http://localhost:8000/api/addprojet",{
             method:'POST',
             body:JSON.stringify(item),
@@ -346,7 +347,7 @@ const sortingN = (col)=>{
                           <td>{item.activite}</td>
                           <td>{item.objectif}</td>
                           <td>{item.commentaire}</td>
-                          <td></td>
+                          <td>{item.idS}</td>
                           <td><button className='btn btn-outline-primary' onClick={()=>selectProjet(i)}><i class="fa-solid fa-pen-to-square"></i></button></td>
                           <td><button className='btn btn-outline-danger' onClick={()=>deleteProjet(item.id)}><i class="fa-solid fa-trash-can"></i></button></td>
                 </tr>

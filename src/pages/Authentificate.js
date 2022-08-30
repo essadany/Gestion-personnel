@@ -10,7 +10,7 @@ const Authentificate = () => {
 
 async function loginn() { 
   let item = { email, pass }; 
-  let res = await fetch("http://127.0.0.1:8000/api/login", 
+  let res = await fetch("http://127.0.0.1:8000/api/login/", 
   { 
     method: "POST", 
     body: JSON.stringify(item), 
@@ -19,6 +19,7 @@ async function loginn() {
 }); 
 res = await res.json(); 
 localStorage.setItem("user-info", JSON.stringify(res));
+localStorage.setItem("email",JSON.stringify(email))
 navigate("/Accueil"); 
 }
 
