@@ -3,7 +3,8 @@ import Creer_absences from './Creer_absences'
 import { Modal,Button } from 'react-bootstrap'
 import React, { useState, useEffect, useRef } from 'react'
 import { useDownloadExcel } from 'react-export-table-to-excel'
-
+import moment from 'moment'
+import { Navs } from '../../components/Navs'
 export default function Demandes() {
     //Trier la table
     const [order,setOrder] = useState("ASC")
@@ -132,6 +133,8 @@ const { onDownload } = useDownloadExcel({
 //........................................................................................................................
   
   return (
+    <>
+    <Navs />
     <div className='main'>
         <h4>Mes demandes</h4>
         
@@ -266,8 +269,8 @@ const { onDownload } = useDownloadExcel({
                 }) 
                .map((item, i) => (
                     <tr key={i}>
-                        <td>{item.debut}</td>
-                        <td>{item.fin}</td>
+                        <td>{moment(item.debut).format("DD-MM-YYYY")}</td>
+                        <td>{moment(item.fin).format("DD-MM-YYYY")}</td>
                         <td>{item.type}</td>
                         <td>{item.statut}</td>
                         <td><button className='btn btn-outline-primary'><i class="fa-solid fa-pen-to-square"></i></button></td>
@@ -279,6 +282,6 @@ const { onDownload } = useDownloadExcel({
             </table>
         </div>
         
-    </div>
+    </div></>
   )
 }

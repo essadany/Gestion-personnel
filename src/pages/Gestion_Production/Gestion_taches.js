@@ -8,6 +8,7 @@ import Select from 'react-select'
 import React, { useState, useEffect, useRef } from 'react'
 import { useDownloadExcel } from 'react-export-table-to-excel'
 import { Navs } from '../../components/Navs'
+import moment from 'moment'
 export default function Gestion_taches() {
   //Trier la table
   const [order,setOrder] = useState("ASC")
@@ -105,17 +106,17 @@ export default function Gestion_taches() {
 
     }
   //Ajouter une activite
-  const [id,setId] = useState("")
-  const [name,setName]=useState("")
-  const [client,setClient]=useState("")
-  const [date,setDate]=useState("")
-  const [activite,setActivite]=useState("")
-  const [objectif,setObjectif]=useState("")
-  const [percentage,setPercentage]=useState("")
-  const [categ1,setCateg1]=useState("")
-  const [categ2,setCateg2]=useState("")
-  const [commentaire,setCommentaire]=useState("")
-  const [eq,setEq]=useState("")
+  const [id,setId] = useState(null)
+  const [name,setName]=useState([])
+  const [client,setClient]=useState([])
+  const [date,setDate]=useState([])
+  const [activite,setActivite]=useState([])
+  const [objectif,setObjectif]=useState([])
+  const [percentage,setPercentage]=useState([])
+  const [categ1,setCateg1]=useState([])
+  const [categ2,setCateg2]=useState([])
+  const [commentaire,setCommentaire]=useState([])
+  const [eq,setEq]=useState([])
   const idS = localStorage.getItem("email")
   async function ajouterProd()
   {
@@ -178,14 +179,22 @@ const changeSelectOptionHandler = (event) => {
 function selectProjet(i)
   {
       let item=data[i]
-       setActivite(item.activite)
-        setObjectif(item.objectif)
-        setCommentaire(item.commentaire)
-        setId(item.id)
+      setActivite(item.activite)
+      setObjectif(item.objectif)
+      setCommentaire(item.commentaire)
+      setId(item.id)
+      setName(item.name)
+      setClient(item.name)
+      setCateg1(item.categ1)
+      setCateg2(item.categ2)
+      setObjectif(item.objectif)
+      setPercentage(item.percentage)
+      setDate(item.date)
+      setEq(item.eq)
   }
 // Modifier l'activite
 function updateProjet(){
-  let item={activite,objectif,commentaire,id}
+  let item={name,client,date,activite,objectif,percentage,commentaire,date,eq,categ1,categ2}
   console.warn("item",item)
   fetch(`http://localhost:8000/api/updateProjet/${id}`, {
     method: 'PUT',
@@ -332,18 +341,18 @@ function updateProjet(){
             </div>
       </form>
       
-      <div className='table-responsive'>
+      <div className='table-responsive my-custom-scrollbar table-wrapper-scroll-y'>
         <table className="table table-bordered">
           <thead>
               <tr>
-                  <th scope="col" onClick={()=>sortingD("date")}>Date</th>
-                  <th scope="col" onClick={()=>sortingS("client")}>Client</th>
-                  <th scope="col" onClick={()=>sortingS("name")}>Projet</th>
-                  <th scope="col" >Catégorie1</th>
-                  <th scope="col" >Catégorie2</th>
-                  <th scope="col" onClick={()=>sortingS("activite")}>Activités</th>
-                  <th scope="col" onClick={()=>sortingN("objectif")}>Production</th>
-                  <th scope="col">Commentaire</th>
+                  <th onClick={()=>sortingD("date")}>Date</th>
+                  <th scope="col" className='large' onClick={()=>sortingS("client")}>Client</th>
+                  <th scope="col" className='large' onClick={()=>sortingS("name")}>Projet</th>
+                  <th scope="col" className='large' >Catégorie1</th>
+                  <th scope="col" className='large' >Catégorie2</th>
+                  <th scope="col" className='large' onClick={()=>sortingS("activite")}>Activités</th>
+                  <th scope="col" className='large' onClick={()=>sortingN("objectif")}>Production</th>
+                  <th scope="col" className='large'>Commentaire</th>
                   <th scope="col">Modifier</th>
                   <th scope="col">Supprimer</th>
               </tr>
@@ -361,7 +370,7 @@ function updateProjet(){
                 })
           .map((item, i) => (
                   <tr key={i}>
-                      <td>{item.date}</td>
+                      <td>{moment(item.date).format("DD-MM-YYYY")}</td>
                           <td>{item.client}</td>
                           <td>{item.name}</td>
                           <td>{item.categ1}</td>
@@ -376,12 +385,24 @@ function updateProjet(){
             }
           </tbody>
         </table>
-        <div>
-          <input type="text" value={activite}  onChange={(e)=>{setActivite(e.target.value)}}/> <br /><br />
-          <input type="number" value={objectif}  onChange={(e)=>{setObjectif(e.target.value)}}/> <br /><br />
-          <input type="text" value={commentaire}   onChange={(e)=>{setCommentaire(e.target.value)}} /> <br /><br />
-          <button onClick={updateProjet} >Modifier</button>  
       </div>
+      <div>
+          <table>
+            <tr>
+              <td><label className="mod" for="setA">Activités : </label>
+          <textarea type="text" value={activite} className='modf' id="setA" onChange={(e)=>{setActivite(e.target.value)}} /></td>
+          <td>
+            <label className ="mod" for="setO">Production : </label>
+          <input type="number"  value={objectif} id="setO"  onChange={(e)=>{setObjectif(e.target.value)}}/> 
+            </td>
+            <td>
+            <label className="mod " for="setC">Commentaire : </label>
+            <textarea type="text" value={commentaire}  className='modf' id="setC" onChange={(e)=>{setCommentaire(e.target.value)}} /> 
+            </td>
+            </tr>
+            
+          </table>  
+          <button onClick={updateProjet} >Modifier</button>  
       </div>
       
     </div></>

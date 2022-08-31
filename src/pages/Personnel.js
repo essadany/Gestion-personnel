@@ -5,6 +5,7 @@ import {Button} from 'react-bootstrap'
 import { useDownloadExcel } from 'react-export-table-to-excel'
 import Select from 'react-select'
 import { Navs } from '../components/Navs'
+import moment from 'moment'
 export default function Personnel() {
   //Trier la table
   const [order,setOrder] = useState("ASC")
@@ -170,6 +171,7 @@ export default function Personnel() {
   }
   return (
     <>
+    <Navs />
     <div className='main'>
         <h4>Gestion des salariés</h4>
         <div className='ajout-export'>
@@ -332,10 +334,10 @@ export default function Personnel() {
                     <th onClick={()=>sortingS("prenom")}>Prénom</th>
                     <th onClick={()=>sortingD("date_naissance")}>Date de naissance</th>
                     <th>Poste</th>
-                    <th onClick={()=>sortingD("date_entree")}>Date d'entrée</th>
-                    <th>Date de sortie</th>
-                    <th >Dernière fiche du paie</th>
-                    <th onClick={()=>sortingS("nom")}>Congés restants</th>
+                    <th className="large" onClick={()=>sortingD("date_entree")}>Date d'entrée</th>
+                    <th className="large">Date de sortie</th>
+                    <th className="large" >Dernière fiche de paie</th>
+                    <th className="large" onClick={()=>sortingS("nom")}>Congés restants</th>
                     <th >Modifier</th>
                     <th >Licencier</th>
                 </tr>
@@ -357,7 +359,7 @@ export default function Personnel() {
                     <tr key={i}>
                         <td>{item.nom}</td>
                         <td>{item.prenom}</td>
-                        <td>{item.date_naissance}</td>
+                        <td>{moment(item.date_naissance).format("DD-MM-YYYY")}</td>
                         <td>{item.poste}</td>
                         <td>{item.date_entree}</td>
                         <td>{item.date_sortie}</td>

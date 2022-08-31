@@ -8,7 +8,7 @@ const Authentificate = () => {
   const [pass, setpass] = useState(""); 
   const navigate = useNavigate();
 
-async function loginn() { 
+async function loginn() {
   let item = { email, pass }; 
   let res = await fetch("http://127.0.0.1:8000/api/login/", 
   { 
