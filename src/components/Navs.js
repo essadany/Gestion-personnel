@@ -13,7 +13,7 @@ export const Navs = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="²">
-            <Nav.Link href='/Accueil'>Acceuil</Nav.Link>
+            <Nav.Link href='/Accueil'>Accueil</Nav.Link>
             <Nav.Link href='/Profile'>Mon Profile</Nav.Link>
             <Nav.Link href='/Personnel'>Gérer le personnel</Nav.Link>
             <NavDropdown title="Gestion du production" id="basic-nav-dropdown">
